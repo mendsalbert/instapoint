@@ -370,3 +370,11 @@ Wed Feb 19 09:42:06 GMT 2025: Request Payload: {
   ]
 }
 Wed Feb 19 09:42:06 GMT 2025: API Response: 
+Thu Feb 20 13:13:51 GMT 2025: Request Payload: 
+Thu Feb 20 13:13:51 GMT 2025: API Response: {
+  "error": {
+    "code": 400,
+    "message": "* GenerateContentRequest.contents: contents is not specified\n",
+    "status": "INVALID_ARGUMENT"
+  }
+}
