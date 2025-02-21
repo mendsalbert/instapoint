@@ -16,7 +16,9 @@ idea.txt
 /push.sh
 # testing
 /coverage
-
+/auto-commit.log
+./auto-commit.log
+/.auto-commit.log
 # next.js
 /.next/
 /out/

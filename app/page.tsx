@@ -108,47 +108,15 @@ export default function Page() {
           your audience like never before.
         </p>
 
-        <div className="flex gap-4 justify-center mb-16">
+        <div className="flex gap-4 justify-center mb-8">
           <Button size="lg" className="gap-2">
             <Mic className="h-4 w-4" />
-            Start Presenting
+            <Link href="/present/voice/">Start Presenting</Link>
           </Button>
           <Button size="lg" variant="outline" className="gap-2">
             <Presentation className="h-4 w-4" />
-            Watch Demo
+            How it works
           </Button>
-        </div>
-
-        <div className="flex justify-center gap-12 text-sm">
-          <div className="group flex flex-col items-center gap-2 transition-transform hover:-translate-y-1">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors">
-              <BrainCircuit className="h-6 w-6 text-primary" />
-            </div>
-            <span className="font-medium">10x Faster</span>
-            <span className="text-xs text-muted-foreground">
-              Than Traditional Tools
-            </span>
-          </div>
-
-          <div className="group flex flex-col items-center gap-2 transition-transform hover:-translate-y-1">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors">
-              <Share2 className="h-6 w-6 text-primary" />
-            </div>
-            <span className="font-medium">100K+</span>
-            <span className="text-xs text-muted-foreground">
-              Presentations Shared
-            </span>
-          </div>
-
-          <div className="group flex flex-col items-center gap-2 transition-transform hover:-translate-y-1">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 group-hover:bg-primary/20 transition-colors">
-              <Users className="h-6 w-6 text-primary" />
-            </div>
-            <span className="font-medium">50K+</span>
-            <span className="text-xs text-muted-foreground">
-              Happy Presenters
-            </span>
-          </div>
         </div>
       </section>
 
