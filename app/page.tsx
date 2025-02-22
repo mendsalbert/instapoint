@@ -39,13 +39,7 @@ export default function Page() {
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
-            <NavigationMenuItem>
-              <Link href="#" legacyBehavior passHref>
-                <NavigationMenuLink className="text-sm font-medium text-muted-foreground hover:text-primary">
-                  For business
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
+
             <NavigationMenuItem>
               <Link href="#" legacyBehavior passHref>
                 <NavigationMenuLink className="text-sm font-medium text-muted-foreground hover:text-primary">

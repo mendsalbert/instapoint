@@ -74,7 +74,7 @@ export async function POST(request: Request) {
       `
       }
 
-      Return as a JSON array of slides:
+      Return ONLY a valid JSON array of slides with this exact structure:
       [
         {
           "id": "slide-1",
@@ -90,9 +90,27 @@ export async function POST(request: Request) {
     const response = await result.response;
     const text = response.text().trim();
 
-    // Clean up and validate JSON
-    const cleanJson = text.replace(/```json\n?|```/g, "").trim();
-    const slides = JSON.parse(cleanJson);
+    // More robust JSON parsing
+    let slides;
+    try {
+      // First try direct parsing
+      slides = JSON.parse(text);
+    } catch (e) {
+      // If direct parsing fails, try cleaning the text
+      const cleanJson = text
+        .replace(/```json\n?|```/g, "") // Remove code blocks
+        .replace(/[\u201C\u201D]/g, '"') // Replace smart quotes
+        .replace(/[\u2018\u2019]/g, "'") // Replace smart apostrophes
+        .replace(/\n/g, "") // Remove newlines
+        .trim();
+
+      try {
+        slides = JSON.parse(cleanJson);
+      } catch (e2) {
+        console.error("Failed to parse JSON after cleaning:", cleanJson);
+        throw new Error("Invalid JSON format received from AI");
+      }
+    }
 
     if (!Array.isArray(slides)) {
       throw new Error("Invalid slides format: not an array");
@@ -111,13 +129,14 @@ export async function POST(request: Request) {
           (index === 0 && stage === "initial" ? "title" : "content"),
         theme: slide.theme || "modern",
       }))
-      .slice(0, Math.min(slides.length, 10 - currentProgress)); // Ensure we leave room for Q&A and Thank You
+      .slice(0, Math.min(slides.length, 10 - currentProgress));
 
     return new Response(JSON.stringify(processedSlides), {
       headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
-    console.error("Error:", error);
+    console.error("Error generating slides:", error);
+    // Return a fallback slide if something goes wrong
     return new Response(
       JSON.stringify([
         {
